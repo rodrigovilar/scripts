@@ -1,4 +1,10 @@
+#!/bin/bash
+
+
 echo -ne "IP your off server: "; read IP_SERVER;
+echo -ne "User Gmail account: "; read USER;
+echo -ne "User Password Gmail account: "; read PASSWORD;
+
 
 rpm -ivh http://fr2.rpmfind.net/linux/epel/6/i386/epel-release-6-8.noarch.rpm
 rpm -ivh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
@@ -18,7 +24,9 @@ yum -y install libsasl2-modules
 yum -y install postfix                        
 sudo sh -c "echo 'myhostname = $IP_SERVER' >> main.cf"
 cp -f main.cf /etc/postfix/
-cp -f sasl_passwd /etc/postfix/                        
+> sasl_passwd
+sudo sh -c "echo '[smtp.gmail.com]:$USER@gmail.com:$PASSWORD' >> sasl_passwd" 
+cp -f sasl_passwd /etc/postfix/    
 postmap /etc/postfix/sasl_passwd
 
 
