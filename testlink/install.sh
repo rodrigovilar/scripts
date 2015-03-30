@@ -4,12 +4,14 @@ if [ -z $1 ]; then
 	echo "Usage: $ ./install.sh IP_SERVER"
 	exit 1
 fi		
+{ 
+#try
 	yum -y install wget
-	mkidir /home/root/testlink_install
-	cd /home/root/testlink_install/	
+	mkdir -p /usr/local/testlink/testlink-1.9.13-0
+	cd /usr/local/testlink-1.9.13-0/	
 	wget https://bitnami.com/redirect/to/49922/bitnami-testlink-1.9.13-0-linux-installer.run
 	chmod +x bitnami-testlink-1.9.13-0-linux-installer.run && ./bitnami-testlink-1.9.13-0-linux-installer.run
-	/home/root/testlink_install/testlink-1.9.13-0/ctlscript.sh start
+	/usr/local/testlink/testlink-1.9.13-0/ctlscript.sh start
 
 	echo "###########################################################################"
 	echo "################################## WATCH ##################################"
@@ -27,3 +29,10 @@ fi
 	echo "- "
 	echo "Acess home page"
 	echo "http://$1:8080/testlink/"
+
+} || { 
+	#catch
+	echo "Erro ao executar o script"
+
+} 
+#finally
