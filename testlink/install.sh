@@ -3,12 +3,13 @@
 if [ -z $1 ]; then
 	echo "Usage: $ ./install.sh IP_SERVER"
 	exit 1
-fi	
-	echo -ne "IP your off server: "; read IP_SERVER;
+fi		
 	yum -y install wget
+	mkidir /home/root/testlink_install
+	cd /home/root/testlink_install/	
 	wget https://bitnami.com/redirect/to/49922/bitnami-testlink-1.9.13-0-linux-installer.run
 	chmod +x bitnami-testlink-1.9.13-0-linux-installer.run && ./bitnami-testlink-1.9.13-0-linux-installer.run
-	/home/root/testlink-1.9.13-0/ctlscript.sh start
+	/home/root/testlink_install/testlink-1.9.13-0/ctlscript.sh start
 
 	echo "###########################################################################"
 	echo "################################## WATCH ##################################"
@@ -25,4 +26,4 @@ fi
 	echo "###########################################################################"
 	echo "- "
 	echo "Acess home page"
-	echo "http://$IP_SERVER:8080/testlink/"
+	echo "http://$1:8080/testlink/"
