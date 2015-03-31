@@ -13,10 +13,6 @@ fi
 	chmod +x bitnami-testlink-1.9.13-0-linux-installer.run && ./bitnami-testlink-1.9.13-0-linux-installer.run
 	/usr/local/testlink/testlink-1.9.13-0/ctlscript.sh start
 
-	sudo sh -c "echo 'external_url 'http://$1.com:8081'' >> gitlab.rb"
-
-	etc/gitlab/gitlab.rb
-
 	echo "###########################################################################"
 	echo "################################## WATCH ##################################"
 	echo "###########################################################################"
@@ -32,7 +28,7 @@ fi
 	echo "###########################################################################"
 	echo "- "
 	echo "Acess home page"
-	echo "http://$1:8081/testlink/"
+	echo "http://$1:8080/testlink/"
 
 
 } || { #catch
