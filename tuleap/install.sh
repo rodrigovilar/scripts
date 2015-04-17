@@ -30,6 +30,8 @@ sudo sh -c "echo '[smtp.gmail.com]:$2@gmail.com:$3' >> sasl_passwd"
 cp -f sasl_passwd /etc/postfix/    
 postmap /etc/postfix/sasl_passwd
 
+cp -f selinux /etc/sysconfig/
+
 echo "##########################"
 echo "# Installation Completed #"
 echo "##########################"
